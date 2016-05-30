@@ -8,7 +8,7 @@ var path = require('path');
 
 // return array of images
 router.get('/images', function(req, res, next) {
-    Image.find(function(err, images) {
+    Image.find().populate('tags').exec(function(err, images) {
         if (err) {
             return next(err);
         }
@@ -30,7 +30,7 @@ router.post('/images', function(req, res, next) {
     });
 });
 
-// creates the :image
+// creates the :image parameter
 router.param('image', function(req, res, next, id) {
     var query = Image.findById(id);
 

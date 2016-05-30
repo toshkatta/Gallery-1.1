@@ -1,33 +1,24 @@
 <div class="lightbox">
     <div class="lightbox-tiles">
-        <span data-ng-repeat="i in images" data-ng-click="displayImage(i)">
-            <img data-ng-src="{{source(i)}}" class="image col-xs-12 col-sm-6 col-md-4 col-lg-3" id="myImg">
-        </span>
+        <div data-ng-repeat="i in images" data-ng-click="displayImage(i)" class="ddz">
+            <img data-ng-src="{{source(i)}}" class="image " id="myImg">
+        </div>
     </div>
-    <!-- <div modal="showModal">
-        <div class="lightbox-header">
-            {{selectedImg.header}}
-            <button class="lightbox-close" data-ng-click="showModal=false;">x</button>
-        </div>
-        <div class="lightbox-content">
-            <div class="lightbox-image">
-                <button class="lightbox-prev" data-ng-show="hasPrev()" data-ng-click="prev()">prev</button>
-                <img data-ng-src={{source(selectedImg)}}>
-            </div>
-            <div class="lightbox-description">
-                {{selectedImg.description}}
-                <button class="lightbox-next" data-ng-show="hasNext()" data-ng-click="next()">next</button>
-            </div>
-        </div>
-    </div> -->
     <div class="modal" ng-show="showModal">
-        <!-- The Close Button -->
         <span class="close" ng-click="closeModal()">&times;</span>
-        <button class="lightbox-prev" data-ng-show="hasPrev()" data-ng-click="prev()">prev</button>
-        <!-- Modal Content (The Image) -->
-        <img class="modal-content" src="{{selectedImg.src}}">
-        <button class="lightbox-next" data-ng-show="hasNext()" data-ng-click="next()">next</button>
-        <!-- Modal Caption (Image Text) -->
-        <!-- <div id="caption"></div> -->
+        <div class="lightbox-prev" data-ng-show="hasPrev()" data-ng-click="prev()"></div>
+        <img class="modal-content" src="{{selectedImg.src}}" alt="{{selectedImg.name}}">
+        <div class="lightbox-next" data-ng-show="hasNext()" data-ng-click="next()"></div>
+        <div id="caption">
+            <div><span class="bolded">Name:</span> {{selectedImg.name}}</div>
+            <div><span class="bolded">Url:</span> <a href="http://localhost:3000/#/image/{{selectedImg._id}}">http://localhost:3000/#image/{{selectedImg._id}}</a></div>
+            <div><span class="bolded">Tags:</span>
+                <span ng-repeat="tag in selectedImg.tags">
+                    <span>{{tag.name}}</span>
+                    <span ng-show="!$last">,</span>
+                </span>
+            </div>
+            <div>{{images.indexOf(selectedImg) + 1}}/{{images.length}}</div>
+        </div>
     </div>
 </div>

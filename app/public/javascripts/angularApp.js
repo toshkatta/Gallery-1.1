@@ -18,7 +18,7 @@ app.config([
                 }
             })
             .state('images', {
-                url: '/images/{id}',
+                url: '/image/{id}',
                 templateUrl: '/images.html',
                 controller: 'ImagesCtrl',
                 resolve: {
@@ -109,15 +109,12 @@ app.directive('lightbox', function() {
             $scope.tileHeight = 150;
 
             $scope.displayImage = function(img) {
-                // console.log('vliza: ', img);
                 $scope.selected = $scope.images.indexOf(img);
                 $scope.selectedImg = img;
                 $scope.showModal = true;
 
-                // modalImg.src = this.src;
-                // modalImg.alt = this.alt;
-                // captionText.innerHTML = this.alt;
-                console.log($scope.selectedImg);
+                var body = document.getElementsByTagName('body')[0];
+                body.classList.add('stop-scrolling');
             };
 
             $scope.source = function(img) {
@@ -143,9 +140,33 @@ app.directive('lightbox', function() {
                 $scope.selectedImg = $scope.images[$scope.selected];
             };
 
-            $scope.closeModal = function () {
+            $scope.closeModal = function() {
                 $scope.showModal = false;
-            }
+                var body = document.getElementsByTagName('body')[0];
+                body.className = body.className.replace(/\bstop-scrolling\b/, '');
+            };
+
+            document.onkeyup = function(e) {
+                switch (e.keyCode) {
+                    case 27 :
+                        $scope.closeModal()
+                        break;
+                    case 39 :
+                        if ($scope.hasNext()) {
+                            $scope.next()
+                        }
+
+                        break;
+                    case 37 :
+                        if ($scope.hasPrev()) {
+                            $scope.prev()
+                        }
+
+                        break;
+                }
+
+                $scope.$apply()
+            };
         }
     };
 });
