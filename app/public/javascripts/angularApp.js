@@ -33,11 +33,38 @@ app.config([
 ]);
 
 app.factory('images', ['$http', function($http) {
+    if (window.innerWidth <= 480) {
+        perPage = 4;
+    } else if (window.innerWidth <= 768) {
+        perPage = 7;
+    } else if (window.innerWidth <= 992) {
+        perPage = 10;
+    } else if (window.innerWidth <= 1200) {
+        perPage = 13;
+    } else {
+        perPage = 16;
+    }
+
     var o = {
         images: []
     };
-    o.getAll = function() {
-        return $http.get('/images').success(function(data) {
+    o.getAll = function(page) {
+        if (!page || page === 1) {
+            page = 1;
+            o.images = []
+        }
+
+        return $http.get('/images?page=' + page + '&perPage=' + perPage).success(function(data) {
+            data.forEach(function(e, i, a) {
+                a[i] = {
+                    name: e.name,
+                    src: "/images/" + e.name + ".jpg",
+                    tags: e.tags,
+                    _id: e._id
+                }
+            })
+
+            data = o.images.concat(data)
             angular.copy(data, o.images);
         });
     };
@@ -60,22 +87,39 @@ app.factory('images', ['$http', function($http) {
 app.controller('MainCtrl', [
     '$scope', 'images',
     function($scope, images) {
-        images.images.forEach(function(e, i, a) {
-            a[i] = {
-                name: e.name,
-                src: "/images/" + e.name + ".jpg",
-                tags: e.tags,
-                _id: e._id
-            }
-        })
-
+        $scope.loading = true;
+        var page = 1;
         $scope.images = images.images;
+        $scope.loading = false;
+
+        function yHandler() {
+            var wrap = document.getElementById('wrap');
+            var contentHeight = wrap.offsetHeight;
+            var yOffset = window.pageYOffset;
+            var y = yOffset + window.innerHeight;
+            if (y >= contentHeight) {
+                $scope.loading = true;
+                page++;
+                images.getAll(page).success(function (resp) {
+                    $scope.loading = false;
+                })
+            }
+        }
+
+        $scope.load = function () {
+            $scope.loading = true;
+        }
+
+        window.onscroll = yHandler;
     }
 ]);
 
 app.controller('ImagesCtrl', [
     '$scope', 'images', 'image',
     function($scope, images, image) {
+        var body = document.getElementsByTagName('body')[0];
+        body.className = body.className.replace(/\bstop-scrolling\b/, '');
+        image.src = '/images/' + image.name + '.jpg';
         $scope.image = image;
         $scope.addTag = function() {
             if ($scope.body === '') {
@@ -148,16 +192,16 @@ app.directive('lightbox', function() {
 
             document.onkeyup = function(e) {
                 switch (e.keyCode) {
-                    case 27 :
+                    case 27:
                         $scope.closeModal()
                         break;
-                    case 39 :
+                    case 39:
                         if ($scope.hasNext()) {
                             $scope.next()
                         }
 
                         break;
-                    case 37 :
+                    case 37:
                         if ($scope.hasPrev()) {
                             $scope.prev()
                         }

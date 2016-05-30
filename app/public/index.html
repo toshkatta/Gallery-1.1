@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <title>Gallery</title>
     <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/javascripts/bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
@@ -8,7 +9,11 @@
 </head>
 
 <body ng-app="gallery">
-    <div class="row">
+    <div class="row" id="wrap">
+    <div class="modal" ng-show="loading">
+        <img src="/images/icons/ajax-loader.gif" alt="loading" class="modal-content loader">
+        <div class="loading-text">Loading</div>
+    </div>
         <div class="col-xs-12 col-sm-12 col-md-11 col-lg-10 col-md-offset-1 col-lg-offset-1">
             <ui-view></ui-view>
         </div>
@@ -20,21 +25,32 @@
         <lightbox images="images"></lightbox>
     </script>
     <script type="text/ng-template" id="/images.html">
-        <div class="page-header">
-            <h3>
-                <span >{{image.name}}</span>
-            </h3>
-        </div>
-        <div ng-repeat="tag in image.tags | orderBy:'name'">
-            <span ">{{tag.name}} </span>
-        </div>
-        <form ng-submit="addTag() " style="margin-top:30px; ">
-            <h3>Add a new tag</h3>
-            <div class="form-group ">
-                <input type="text " class="form-control " placeholder="Tag " ng-model="body "></input>
+        <a href="/">Back</a>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <img class="modal-content" src="{{image.src}}" alt="{{selectedImg.name}}" id="single-image">
             </div>
-            <button type="submit " class="btn btn-primary ">Post</button>
-        </form>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="page-header">
+                    <h3>
+                        <span><span class="bolded">Name: </span>{{image.name}}</span>
+                    </h3>
+                </div>
+                <div><span class="bolded">Tags: </span>
+                    <span ng-repeat="tag in image.tags | orderBy:'name'">
+                        <span>{{tag.name}}</span>
+                    <span ng-show="!$last">, </span>
+                    </span>
+                </div>
+                <form ng-submit="addTag()">
+                    <h3>Add a new tag</h3>
+                    <div class="form-group ">
+                        <input type="text" class="form-control" placeholder="Enter tag..." ng-model="body" id="tag-input"></input>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
     </script>
     <script src="/javascripts/bower_components/jquery/dist/jquery.min.js "></script>
     <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js "></script>

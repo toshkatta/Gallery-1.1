@@ -8,7 +8,10 @@ var path = require('path');
 
 // return array of images
 router.get('/images', function(req, res, next) {
-    Image.find().populate('tags').exec(function(err, images) {
+    var page = parseInt(req.query.page, 10);
+    var perPage = parseInt(req.query.perPage, 10)
+    var skip = (page - 1) * perPage;
+    Image.find().skip(skip).limit(perPage).sort({"_id":-1}).populate('tags').exec(function(err, images) {
         if (err) {
             return next(err);
         }

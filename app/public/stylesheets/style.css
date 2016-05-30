@@ -194,18 +194,38 @@ body {
 }
 
 .ddz {
-	display: inline-block;
+    display: inline-block;
 }
 
 .image {
     margin: 1px;
     padding: 0px;
-	max-width: 450px;
-	max-height: 253px;
-	width: auto;
-	height: auto;
+    max-width: 450px;
+    max-height: 253px;
+    width: auto;
+    height: auto;
 }
 
 .bolded {
-	font-weight: bold;
+    font-weight: bold;
+}
+
+#tag-input {
+    width: 160px;
+}
+
+#single-image {
+    margin-top: 3%;
+}
+
+.loader {
+	max-width: 100%;
+	max-height: 100%;
+	background: none;
+	box-shadow: none;
+}
+
+.loading-text {
+	color: white;
+	text-align: center;
 }
