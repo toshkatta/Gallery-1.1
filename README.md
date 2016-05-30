@@ -4,9 +4,9 @@
 [mongo](https://www.mongodb.com/)
 [bower](https://www.npmjs.com/package/bower)
 
-## In order to run the app
-'C:\mongodb\bin\mongod.exe'
+## In order to run the app:
 '''
+C:\mongodb\bin\mongod.exe
 cd app
 npm i
 bower i
