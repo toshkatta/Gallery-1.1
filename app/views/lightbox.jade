@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+.lightbox
+	.lightbox-tiles
+		.images-holder(data-ng-repeat='i in images', data-ng-click='displayImage(i)')
+		img#myImg.image(data-ng-src='{{source(i)}}')
+	.modal(ng-show='showModal')
+		span.close(ng-click='closeModal()') ×
+		.lightbox-prev(data-ng-show='hasPrev()', data-ng-click='prev()')
+		img.modal-content(src='{{selectedImg.src}}', alt='{{selectedImg.name}}')
+		.lightbox-next(data-ng-show='hasNext()', data-ng-click='next()')
+		#caption
+		div
+			span.bolded Name:
+			|	{{selectedImg.name}}
+		div
+			span.bolded Url:
+			a(href='http://localhost:3000/#/image/{{selectedImg._id}}') http://localhost:3000/#image/{{selectedImg._id}}
+		div
+			span.bolded Tags:
+			span(ng-repeat='tag in selectedImg.tags')
+			span {{tag.name}}
+			span(ng-show='!$last') ,
+		div {{images.indexOf(selectedImg) + 1}}/{{images.length}}

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+a(href='/') Back
+    .row
+        .col-xs-12.col-sm-12.col-md-9.col-lg-9
+            img#single-image.modal-content(src='{{image.src}}', alt='{{selectedImg.name}}')
+        .col-xs-12.col-sm-12.col-md-3.col-lg-3
+            .page-header
+                h3
+                    span
+            span.bolded Name:
+            | {{image.name}}
+        div
+            span.bolded Tags:
+            span(ng-repeat="tag in image.tags | orderBy:'name'")
+                span {{tag.name}}
+                span(ng-show='!$last') ,
+        form(ng-submit='addTag()')
+            h3 Add a new tag
+            .form-group
+                input#tag-input.form-control(type='text', placeholder='Enter tag...', ng-model='body')
+            button.btn.btn-primary(type='submit') Post
