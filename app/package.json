@@ -4,7 +4,7 @@
 	"private": true,
 	"main": "app.js",
 	"scripts": {
-		"start": "heroku start"
+		"start": "node ./bin/www"
 	},
 	"dependencies": {
 		"body-parser": "~1.13.2",
@@ -16,6 +16,6 @@
 		"serve-favicon": "~2.3.0"
 	},
 	"engines": {
-		"node": "5.5.0"
+		"node": "v5.5.0"
 	}
 }
