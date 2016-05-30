@@ -7,11 +7,11 @@
     <div class="modal" ng-show="showModal">
         <span class="close" ng-click="closeModal()">&times;</span>
         <div class="lightbox-prev" data-ng-show="hasPrev()" data-ng-click="prev()"></div>
-        <img class="modal-content" src="{{selectedImg.src}}" alt="{{selectedImg.name}}">
+        <img class="modal-content pointer" src="{{selectedImg.src}}" alt="{{selectedImg.name}}" ng-click="redirectToImage()">
         <div class="lightbox-next" data-ng-show="hasNext()" data-ng-click="next()"></div>
         <div id="caption">
             <div><span class="bolded">Name:</span> {{selectedImg.name}}</div>
-            <div><span class="bolded">Url:</span> <a href="http://localhost:3000/#/image/{{selectedImg._id}}">http://localhost:3000/#image/{{selectedImg._id}}</a></div>
+            <div><span class="bolded">Url:</span> <a href="http://localhost:3000/#/image/{{selectedImg._id}}" class="white-text">http://localhost:3000/#image/{{selectedImg._id}}</a></div>
             <div><span class="bolded">Tags:</span>
                 <span ng-repeat="tag in selectedImg.tags">
                     <span>{{tag.name}}</span>

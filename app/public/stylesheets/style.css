@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: url(../fonts/segoeuil.ttf);
+}
+html, body {
+    font-family: "Segoe UI", "Arial", "Tahoma", monospace;
+    font-size: 24px;
+}
+
 .row {
     margin: 0;
 }
@@ -228,4 +237,32 @@ body {
 .loading-text {
 	color: white;
 	text-align: center;
+}
+
+a, a:hover, a:link, a:active, a:visited {
+    text-decoration: none;
+}
+
+.white-text {
+    color: #958D8D;
+}
+
+.white-text:hover {
+    color: #EDE8E8;
+}
+
+.blue-text {
+    display: block;
+    margin-top: 2%;
+    font-size: 1.1em;
+    color: #337AB7;
+    max-width: 50px;
+}
+
+.blue-text:hover {
+    color: #71A9D9;
+}
+
+.pointer {
+    cursor: pointer;
 }

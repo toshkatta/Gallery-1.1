@@ -8,7 +8,7 @@ angular.module('gallery').directive('lightbox', function() {
 
         replace: true,
 
-        controller: function($rootScope, $scope) {
+        controller: function($rootScope, $scope, $location) {
             $scope.path = "src";
             $scope.tileWidth = 150;
             $scope.tileHeight = 150;
@@ -50,6 +50,10 @@ angular.module('gallery').directive('lightbox', function() {
                 var body = document.getElementsByTagName('body')[0];
                 body.className = body.className.replace(/\bstop-scrolling\b/, '');
             };
+
+            $scope.redirectToImage = function () {
+                $location.path('/image/' + $scope.selectedImg._id)
+            }
 
             document.onkeyup = function(e) {
                 switch (e.keyCode) {
