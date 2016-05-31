@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Gallery</title>
-    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/javascripts/bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
     <link href="/stylesheets/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon" />
 </head>
@@ -40,7 +40,7 @@
                 <div><span class="bolded">Tags: </span>
                     <span ng-repeat="tag in image.tags | orderBy:'name'">
                         <span>{{tag.name}}</span>
-                    <span ng-show="!$last">, </span>
+                        <span ng-show="!$last">, </span>
                     </span>
                 </div>
                 <form ng-submit="addTag()">
@@ -53,12 +53,12 @@
             </div>
         </div>
     </script>
-    <script src="/javascripts/bower_components/jquery/dist/jquery.min.js "></script>
-    <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js "></script>
-    <script src="/javascripts/bower_components/angular/angular.min.js "></script>
-    <script src="/javascripts/bower_components/angular-ui-router/release/angular-ui-router.min.js "></script>
-    <script src="/javascripts/bower_components/angular-bootstrap/ui-bootstrap.min.js "></script>
-    <script src="/javascripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.js "></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js "></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js "></script>
+    <script src="/bower_components/angular/angular.min.js "></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js "></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js "></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js "></script>
     <script src="/javascripts/angularApp.js "></script>
     <script src="/javascripts/imagesFactory.js "></script>
     <script src="/javascripts/lightbox.js "></script>
