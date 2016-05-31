@@ -13,7 +13,7 @@ Open another tab
 cd app
 npm i
 bower i
-npm run start
+npm start
 ```
 
 #### To populate the db with images:
