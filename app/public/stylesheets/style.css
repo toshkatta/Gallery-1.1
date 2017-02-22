@@ -185,7 +185,7 @@ body {
 
 /* 100% Image Width on Smaller Screens */
 
-@media only screen and (max-width: 700px) {
+@media screen and (max-width: 700px) {
     .modal-content {
         width: 100%;
     }
@@ -209,7 +209,7 @@ body {
 .image {
     margin: 1px;
     padding: 0px;
-    max-width: 450px;
+    max-width: 410px;
     max-height: 253px;
     width: auto;
     height: auto;
@@ -265,4 +265,12 @@ a, a:hover, a:link, a:active, a:visited {
 
 .pointer {
     cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 400px) {    
+    .image {
+        max-width: 345px;
+    }
 }

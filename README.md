@@ -6,7 +6,8 @@
 
 ## In order to run the app:
 ```
-C:\mongodb\bin\mongod.exe
+C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe
+(or wherever you installed mongo)
 ```
 Open another tab
 ```

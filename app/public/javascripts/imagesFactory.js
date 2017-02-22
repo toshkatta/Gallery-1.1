@@ -21,8 +21,10 @@ angular.module('gallery').factory('images', ['$http', function($http) {
             o.images = []
         }
 
-        return $http.get('/images?page=' + page + '&perPage=' + perPage).success(function(data) {
-            data.forEach(function(e, i, a) {
+        return $http.get('/images?page=' + page + '&perPage=' + perPage).then(function(data) {
+            console.log(data);
+            let imgs = data.data;
+            imgs.forEach(function(e, i, a) {
                 a[i] = {
                     name: e.name,
                     src: "/images/" + e.name + ".jpg",
@@ -31,12 +33,12 @@ angular.module('gallery').factory('images', ['$http', function($http) {
                 }
             })
 
-            data = o.images.concat(data)
-            angular.copy(data, o.images);
+            imgs = o.images.concat(imgs)
+            return angular.copy(imgs, o.images);
         });
     };
     o.create = function(post) {
-        return $http.post('/images', post).success(function(data) {
+        return $http.post('/images', post).then(function(data) {
             o.images.push(data);
         });
     };
